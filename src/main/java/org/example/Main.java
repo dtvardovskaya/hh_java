@@ -1,17 +1,31 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/*
+Напишите программу, которая выводит на экран все трехзначные числа, для которых соблюдаются два условия:
+• само число заканчивается на 0;
+• сумма нечетных делителей этого числа тоже заканчивается на 0.
+
+ */
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        for (int i = 100; i < 1000; i++) {
+            int sumOfDivisors = getSumOfDivisors(i);
+            if (i % 10 == 0 && sumOfDivisors % 10 == 0) {
+                System.out.println(i);
+            }
         }
+    }
+
+    public static int getSumOfDivisors(int number) {
+        int sum = 1;
+        for (int i = 2; i <= number / 2; i++) {
+            if (number % i == 0 && i % 2 != 0) {
+                sum += i;
+            }
+        }
+        if (number % 2 != 0) {
+            sum += number;
+        }
+        return sum;
     }
 }

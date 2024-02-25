@@ -1,17 +1,45 @@
 package org.example;
+/*
+В инструкции по пользованию лифтом в торговом центре написано: «Не более 6 человек или не более 450 кг».
+Перед входом в лифт установлен прибор, который подсчитывает входящих в лифт и определяет вес до входа в лифт.
+Прибор автоматически прекращает доступ к лифту, если вход очередного человека может нарушить инструкцию. Напишите программу,
+которая принимает с клавиатуры значения, каждое из которых - вес очередного человека, входящего в лифт.
+Ввод данных продолжается до тех пор, пока соблюдается требование, указанное в инструкции.
+Программа должна выводить на экран следующую итоговую информацию:
+• количество людей, вошедших в лифт;
+• общий их вес;
+• причина, по которой прекращен вход людей в лифт.
+ */
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        int amountOfPeople = 0;
+        int totalWeight = 0;
+        String error;
+        while (true) {
+            System.out.println("Введите вес:");
+            int weight = scanner.nextInt();
+            if (weight < 0) {
+                System.out.println("Вес должен быть положительным");
+                continue;
+            }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+            if (totalWeight + weight > 450) {
+                error = "Превышен общий вес!";
+                break;
+            } else if (amountOfPeople + 1 > 6) {
+                error = "Превышено общее допустимое количество людей";
+                break;
+            } else {
+                amountOfPeople++;
+                totalWeight += weight;
+            }
         }
+        System.out.printf("количество людей, вошедших в лифт: %d \n", amountOfPeople);
+        System.out.printf("общий вес: %d \n", totalWeight);
+        System.out.printf("причина, по которой прекращен вход людей в лифт: \n%s", error);
     }
 }

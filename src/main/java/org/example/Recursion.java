@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /*
@@ -16,7 +15,7 @@ public class Recursion {
         System.out.println(getSumArray(array, array.length - 1));
     }
 
-    static int[] fillArray(){
+    static int[] fillArray() {
         int[] array = new int[50];
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
@@ -25,8 +24,8 @@ public class Recursion {
         return array;
     }
 
-    static int getSumArray(int[] array, int i){
-        if (i == 0){
+    static int getSumArray(int[] array, int i) {
+        if (i == 0) {
             return array[i];
         } else {
             return array[i] + getSumArray(array, i - 1);
